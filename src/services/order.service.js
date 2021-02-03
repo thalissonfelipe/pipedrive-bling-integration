@@ -1,7 +1,8 @@
 const axios = require('axios');
+const logger = require('../utils/log');
+const ordersRepository = require('../repositories/order.repository');
 const { toXML, getDifference } = require('../utils/utils');
 const { PIPEDRIVE_API_URL, BLING_API_URL } = require('../config/config');
-const ordersRepository = require('../repositories/orders');
 
 module.exports = {
     async index() {
@@ -21,10 +22,10 @@ module.exports = {
             response.forEach(item => {
                 if (item.data.retorno.erros) { // has errors
                     let err = item.data.retorno.erros[0].erro;
-                    console.log(`Código de erro: ${err.cod} - ${err.msg}`);
+                    logger.warn(`Código de erro: ${err.cod}: ${err.msg}`);
                 } else {
                     let order = item.data.retorno.pedidos[0].pedido;
-                    console.log(`Pedido com id ${order.idPedido} criado.`);
+                    logger.info(`Pedido com id ${order.idPedido} criado.`);
                 }
             });
 
@@ -42,7 +43,7 @@ module.exports = {
                 ordersToSave && ordersRepository.save(ordersToSave);
             }
         } catch (error) {
-            console.log(error);
+            logger.error(error);
         }
     }
 }

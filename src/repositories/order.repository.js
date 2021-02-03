@@ -1,13 +1,18 @@
+const logger = require('../utils/log');
 const Order = require('../models/Order');
 
 module.exports = {
     async find() {
-        const orders = await Order.find({}, {
-            _id: 0,
-            __v: 0
-        });
+        try {
+            const orders = await Order.find({}, {
+                _id: 0,
+                __v: 0
+            });
 
-        return orders;
+            return orders;
+        } catch (error) {
+            logger.error(error);
+        }
     },
     async findFormatted() {
         try {
@@ -26,14 +31,14 @@ module.exports = {
 
             return orders;
         } catch (error) {
-            console.log(error);
+            logger.error(error);
         }
     },
     async save(orders) {
         try {
             await Order.insertMany(orders);
         } catch (error) {
-            console.log(error);
+            logger.error(error);
         }
     }
 };

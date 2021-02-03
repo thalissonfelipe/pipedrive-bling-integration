@@ -1,4 +1,5 @@
-const ordersService = require('../services/orders');
+const logger = require('../utils/log');
+const ordersService = require('../services/order.service');
 
 module.exports = {
     async index(req, res) {
@@ -7,7 +8,7 @@ module.exports = {
 
             return res.status(200).json(response);
         } catch (error) {
-            console.log(error);
+            logger.error(error);
             return res.status(500).send('Internal Error.');
         }
     }
