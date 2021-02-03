@@ -1,11 +1,12 @@
-const { getDeals } = require('../utils/utils');
+const axios = require('axios');
+const { PIPEDRIVE_API_URL } = require('../config/config');
 
 module.exports = {
     async index(req, res) {
         try {
-            const { data } = await getDeals();
+            const response = await axios.get(PIPEDRIVE_API_URL);
 
-            return res.status(200).json(data);
+            return res.status(200).json(response.data);
         } catch (error) {
             console.log(error);
             return res.status(500).send('Internal Error.');
