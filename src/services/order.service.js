@@ -14,34 +14,40 @@ module.exports = {
         try {
             const wonDeals = await axios.get(PIPEDRIVE_API_URL);
             const xmlOrders = toXML(wonDeals.data.data);
-            
-            const promises = xmlOrders.map(xmlOrder => axios.post(`${BLING_API_URL}&xml=${xmlOrder}`));
-            const response = await Promise.all(promises);
+            const axiosArray = xmlOrders.map(xmlOrder => (
+                axios({
+                    method: 'post',
+                    url: `${BLING_API_URL}&xml=${xmlOrder}`
+                })
+            ));
 
-            // log failures or success
-            response.forEach(item => {
-                if (item.data.retorno.erros) { // has errors
-                    let err = item.data.retorno.erros[0].erro;
-                    logger.warn(`Código de erro: ${err.cod}: ${err.msg}`);
-                } else {
-                    let order = item.data.retorno.pedidos[0].pedido;
-                    logger.info(`Pedido com id ${order.idPedido} criado.`);
-                }
-            });
+            axios
+                .all(axiosArray)
+                .then(axios.spread((...responses) => {
+                    responses.forEach(res => {
+                        if (res.data.retorno.erros) { // has errors
+                            let err = res.data.retorno.erros[0].erro;
+                            logger.error(`Code: ${err.cod} - Response: ${err.msg}`);
+                        } else {
+                            let order = res.data.retorno.pedidos[0].pedido;
+                            logger.info(`Pedido com id ${order.idPedido} criado.`);
+                        }
+                    })
+                }))
+                .catch(err => logger.error(err))
 
-            const orders = wonDeals.data.data.map(deal => ({
+            const oldOrders = await ordersRepository.find();
+            const newOrders = wonDeals.data.data.map(deal => ({
                 orderId: deal.id,
+                personName: deal.person_name,
                 title: deal.title,
                 value: deal.value,
                 currency: deal.currency,
                 wonDate: deal.won_time
             }));
 
-            if (orders) {
-                const oldOrders = await ordersRepository.find();
-                const ordersToSave = getDifference(oldOrders, orders);
-                ordersToSave && ordersRepository.save(ordersToSave);
-            }
+            const ordersToSave = getDifference(oldOrders, newOrders);
+            ordersToSave && ordersRepository.save(ordersToSave);
         } catch (error) {
             logger.error(error);
         }
