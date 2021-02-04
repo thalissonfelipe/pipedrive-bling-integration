@@ -14,14 +14,15 @@ Desafio técnico proposto pela [LinkApi](https://linkapi.gupy.io/).
 
 - [x] Criar endpoint para trazer os dados consolidados da collection do MongoDB.
 
-## Setup
+## Configuraçes
 
 ### Contas
 
-É necessário criar uma conta nas plataformas Pipedrive e Bling.
+É necessário criar uma conta nas plataformas Pipedrive, Bling e MongoDB Atlas.
 
 - [Pipedrive](https://www.pipedrive.com/pt)
 - [Bling](https://www.bling.com.br/home)
+- [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
 
 ### Dependências
 
@@ -58,21 +59,19 @@ Endpoint opcional que retorna uma lista de objetos json com status igual a ganho
 
 200
 
-##### Body
+###### Body
 
 Exemplo de resposta com os principais atributos.
 
 ```json
 [
     {
-        ...
         "id": "id da oportunidade",
         "person_name": "nome do cliente",
         "title": "título da oportunidade",
         "value": "valor da oportunidade",
         "currency": "moeda",
         "wonDate": "data que a oportunidade mudou o status para ganho"
-        ...
     }
 ]
 ```
@@ -83,7 +82,7 @@ Exemplo de resposta com os principais atributos.
 
 500
 
-##### Body
+###### Body
 
 Internal Error.
 
@@ -101,7 +100,7 @@ Endpoint que retorna uma lista de objetos json com os dados agrupados por dia da
 
 200
 
-##### Body
+###### Body
 
 ```json
 [
@@ -118,6 +117,6 @@ Endpoint que retorna uma lista de objetos json com os dados agrupados por dia da
 
 500
 
-##### Body
+###### Body
 
 Internal Error.
