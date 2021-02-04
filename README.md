@@ -2,6 +2,16 @@
 
 Desafio técnico proposto pela [LinkApi](https://linkapi.gupy.io/).
 
+A integração pode ser realizada de duas formas:
+
+1. Endpoint
+    
+    Por meio do endpoint `POST /orders/sync`.
+    
+2. Cron
+
+    Utilizando o agendador de tarefas `cron`. O serviço realiza a integração uma vez por dia às 08:00 am.
+
 ## Requisitos:
 
 - [x] Criar contas testes nas plataformas Pipedrive e Bling.
@@ -110,6 +120,35 @@ Endpoint que retorna uma lista de objetos json com os dados agrupados por dia da
     }
 ]
 ```
+
+##### Internal Error
+
+###### HTTP Status
+
+500
+
+###### Body
+
+Internal Error.
+
+### POST /orders/sync
+
+Endpoint utilizado para sincronizar as plataformas Pipedrive e Bling.
+
+#### Request
+
+`curl -X POST "http://localhost:3000/orders/sync"`
+
+##### Success
+
+###### HTTP Status
+
+200
+
+###### Body
+
+- Sincronização realizada! Novos pedidos foram criados.
+- Sincronização realizada! Nenhum pedido foi criado.
 
 ##### Internal Error
 

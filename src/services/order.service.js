@@ -6,12 +6,14 @@ const { PIPEDRIVE_API_URL, BLING_API_URL } = require('../config/config');
 
 module.exports = {
     async index() {
-        const orders = await ordersRepository.findFormatted();
+        const orders = await ordersRepository.findGrouped();
 
         return orders;
     },
     async create() {
         try {
+            let sync = false;
+
             const wonDeals = await axios.get(PIPEDRIVE_API_URL);
             const xmlOrders = toXML(wonDeals.data.data);
             const axiosArray = xmlOrders.map(xmlOrder => (
@@ -21,20 +23,18 @@ module.exports = {
                 })
             ));
 
-            axios
-                .all(axiosArray)
-                .then(axios.spread((...responses) => {
-                    responses.forEach(res => {
-                        if (res.data.retorno.erros) { // has errors
-                            let err = res.data.retorno.erros[0].erro;
-                            logger.error(`Code: ${err.cod} - Response: ${err.msg}`);
-                        } else {
-                            let order = res.data.retorno.pedidos[0].pedido;
-                            logger.info(`Pedido com id ${order.idPedido} criado.`);
-                        }
-                    })
-                }))
-                .catch(err => logger.error(err))
+            const responses = await Promise.all(axiosArray);
+
+            responses.forEach(res => {
+                if (res.data.retorno.erros) {
+                    let err = res.data.retorno.erros[0].erro;
+                    logger.error(`Code: ${err.cod} - Response: ${err.msg}`);
+                } else {
+                    sync = true;
+                    let order = res.data.retorno.pedidos[0].pedido;
+                    logger.info(`Pedido com id ${order.idPedido} criado.`);
+                }
+            })
 
             const oldOrders = await ordersRepository.find();
             const newOrders = wonDeals.data.data.map(deal => ({
@@ -47,9 +47,12 @@ module.exports = {
             }));
 
             const ordersToSave = getDifference(oldOrders, newOrders);
-            ordersToSave && ordersRepository.save(ordersToSave);
+            ordersToSave && (await ordersRepository.save(ordersToSave));
+
+            return sync;
         } catch (error) {
             logger.error(error);
+            return false;
         }
     }
 }

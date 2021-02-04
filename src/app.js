@@ -14,7 +14,7 @@ app.use('/', router);
 connection
     .then(() => {
         logger.info('Connected with MongoDB Atlas!');
-        logger.info('Starting cron! Running every day at 06:00 AM.');
+        logger.info('Starting cron! Running every day at 08:00 AM.');
         require('./jobs/cron'); // start cron after a successful mongodb connection
     })
     .catch(err => logger.error(`Error on mongodb connection: ${err}`));

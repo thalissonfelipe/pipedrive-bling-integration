@@ -14,7 +14,7 @@ module.exports = {
             logger.error(error);
         }
     },
-    async findFormatted() {
+    async findGrouped() {
         try {
             const orders = await Order.aggregate([{
                 $group: {
