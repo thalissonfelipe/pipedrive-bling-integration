@@ -1,8 +1,17 @@
 const { create } = require('xmlbuilder2');
 
+/**
+ * This function should return a xml array corresponding to each deal with status equals to won.
+ * 
+ * This function serialize a json object to a xml format that it will be used to create a new deal.
+ * 
+ * @param {array} deals Object array containing all deals with status equals to won.
+ * 
+ * @return {array} returns a xml array.
+ */
 const toXML = deals => (
     deals.map(deal => (
-        create({ version: '1.0', encoding: 'UTF-8',  })
+        create({ version: '1.0', encoding: 'UTF-8' })
             .ele('pedido')
                 .ele('cliente')
                     .ele('id').txt(deal.orderId).up()
@@ -82,6 +91,17 @@ const toXML = deals => (
     ))
 );
 
+/**
+ * This function compare two arrays and return the difference between them.
+ * This function first get all oders saved in the database and compare
+ * if there are new orders to save. If it is true, this function should
+ * return the objects the are differentes.
+ * 
+ * @param {array} a array with orders saved in the database.
+ * @param {array} b array with new orders to save in the database.
+ * 
+ * @return {array} returns an array containing the new orders to save.
+ */
 const getDifference = (a, b) => {
     const compare = array => (
         current => (

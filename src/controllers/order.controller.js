@@ -1,5 +1,6 @@
 const logger = require('../utils/log');
 const ordersService = require('../services/order.service');
+const historyRepository = require('../repositories/history.repository');
 
 module.exports = {
     async index(req, res) {
@@ -15,6 +16,7 @@ module.exports = {
     async sync(req, res) {
         try {
             logger.info('Running Pipedrive and Bling integration.')
+            await historyRepository.save();
             const response = await ordersService.create();
 
             const message = response
