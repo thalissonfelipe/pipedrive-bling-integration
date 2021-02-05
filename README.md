@@ -12,6 +12,19 @@ A integração pode ser realizada de duas formas:
 
     Utilizando o agendador de tarefas `cron`. O serviço realiza a integração uma vez por dia às 08:00 am.
 
+## Bibliotecas e ferramentas utilizadas:
+
+- [Express](https://expressjs.com/pt-br/)
+- [Mongoose](https://mongoosejs.com/)
+- [Node-cron](https://www.npmjs.com/package/node-cron)
+- [Axios](https://github.com/axios/axios)
+- [xmlbuilder2](https://www.npmjs.com/package/xmlbuilder2)
+- [Morgan](https://www.npmjs.com/package/morgan)
+- [Winston](https://www.npmjs.com/package/winston)
+- [Nodemon](https://nodemon.io/)
+- [dotenv](https://www.npmjs.com/package/dotenv)
+
+
 ## Requisitos:
 
 - [x] Criar contas testes nas plataformas Pipedrive e Bling.
@@ -133,7 +146,8 @@ Internal Error.
 
 ### POST /orders/sync
 
-Endpoint utilizado para sincronizar as plataformas Pipedrive e Bling.
+Endpoint utilizado para sincronizar as plataformas Pipedrive e Bling. Em caso de sucesso a API pode retornar dois tipos de resposta.
+Se novos pedidos foram ou não criados.
 
 #### Request
 
@@ -159,3 +173,40 @@ Endpoint utilizado para sincronizar as plataformas Pipedrive e Bling.
 ###### Body
 
 Internal Error.
+
+### GET /histories
+
+Endpoint utilizado para registrar a data e hora de cada integração.
+É basicamente uma nova coleção no mongo que contém o timestamp das integrações realizadas pelo cron ou pelo endpoint.
+
+#### Request
+
+`curl -X GET "http://localhost:3000/histories"`
+
+##### Success
+
+###### HTTP Status
+
+200
+
+###### Body
+
+```json
+{
+    "timestamps": [
+        "2020-02-03 08:00:00",
+        "2020-02-03 09:36:23
+    ]
+}
+```
+
+##### Internal Error
+
+###### HTTP Status
+
+500
+
+###### Body
+
+Internal Error.
+
