@@ -51,10 +51,13 @@ A integração pode ser realizada de duas formas:
 
 - [Node.js v12.20.1](https://nodejs.org/en/blog/release/v12.20.1/)
 - [yarn](https://yarnpkg.com/)
+- [npm](https://www.npmjs.com/)
 
-Clone este repositório e na pasta raiz execute o seguinte comando:
+Clone este repositório e na pasta raiz execute um dos seguintes comandos:
 
 `yarn install`
+
+`npm install`
 
 ### Variáveis de ambiente
 
@@ -62,9 +65,11 @@ Crie um arquivo .env e preencha com suas credenciais. Use o arquivo .env.example
 
 ### Executar
 
-Pronto, basta executar o seguinte comando para iniciar o serviço:
+Pronto, basta executar um dos seguintes comandos para iniciar o serviço:
 
 `yarn start` ou `yarn dev`
+
+`npm start` ou `npm run dev`
 
 ## Endpoints
 
@@ -195,7 +200,7 @@ Endpoint utilizado para registrar a data e hora de cada integração.
 {
     "timestamps": [
         "2020-02-03 08:00:00",
-        "2020-02-03 09:36:23
+        "2020-02-03 09:36:23"
     ]
 }
 ```
