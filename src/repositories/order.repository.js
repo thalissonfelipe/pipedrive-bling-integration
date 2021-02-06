@@ -1,4 +1,3 @@
-const logger = require('../utils/log');
 const Order = require('../models/Order');
 
 module.exports = {
@@ -11,7 +10,7 @@ module.exports = {
 
             return orders;
         } catch (error) {
-            logger.error(error);
+            throw error;
         }
     },
     async findGrouped() {
@@ -31,14 +30,14 @@ module.exports = {
 
             return orders;
         } catch (error) {
-            logger.error(error);
+            throw error;
         }
     },
     async save(orders) {
         try {
             await Order.insertMany(orders);
         } catch (error) {
-            logger.error(error);
+            throw error;
         }
     }
 };

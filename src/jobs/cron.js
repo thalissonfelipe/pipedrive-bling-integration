@@ -8,7 +8,11 @@ const { create } = require('../services/order.service');
  * Routine used to perform the integration between pipedrive and bling platforms.
  */
 cron.schedule('0 8 * * *', async () => {
-    logger.info('Running Pipedrive and Bling integration.');
-    await historyRepository.save();
-    await create();
+    try {
+        logger.info('Running Pipedrive and Bling integration.');
+        await historyRepository.save();
+        await create();
+    } catch (error) {
+        logger.error(`Error on cron execution: ${error}`);
+    }
 });

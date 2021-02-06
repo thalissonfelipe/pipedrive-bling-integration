@@ -181,7 +181,7 @@ Internal Error.
 
 ### GET /histories
 
-Endpoint utilizado para registrar a data e hora de cada integração.
+Endpoint utilizado para recuperar a data e hora de cada integração.
 É basicamente uma nova coleção no mongo que contém o timestamp das integrações realizadas pelo cron ou pelo endpoint.
 
 #### Request

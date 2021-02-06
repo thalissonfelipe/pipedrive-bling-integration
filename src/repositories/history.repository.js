@@ -1,5 +1,4 @@
 const History = require('../models/History');
-const logger = require('../utils/log');
 
 module.exports = {
     async save() {
@@ -7,7 +6,7 @@ module.exports = {
             const history = new History();
             await history.save();
         } catch (error) {
-            logger.error(error);
+            throw error;
         }
     },
     async find() {
@@ -35,11 +34,11 @@ module.exports = {
                     _id: 0,
                     timestamps: 1
                 }
-            }])
+            }]);
 
             return histories;
         } catch (error) {
-            logger.error(error);
+            throw error;
         }
     }
 }
