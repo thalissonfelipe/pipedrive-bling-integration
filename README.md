@@ -71,6 +71,29 @@ Pronto, basta executar um dos seguintes comandos para iniciar o serviço:
 
 `npm start` ou `npm run dev`
 
+## Docker
+
+Também é possível usar o serviço utilizando docker, mas é necessário ter o docker instalado.
+
+1. Clone o repositório e configure as variáveis de ambiente.
+
+2. Execute o seguinte comando para criar uma imagem docker:
+
+`sudo docker build -t linkapi/challenge .`
+
+- docker build: cria uma imagem a partir do Dockerfile.
+- -t linkapi/challenge: é o nome/tag da imagem.
+- .: local onde o arquivo Dockerfile está.
+
+3. Em seguinda, execute o seguinte comando abaixo para criar um container a partir da imagem criada:
+
+`docker run -p 3000:3000 -d linkapi/challenge`
+
+- docker run: cria um container e o inicializa.
+- -p 3000:3000: libera a porta do container para que cada requisição de fora querendo acessar a porta 3000 do container possa também ouvir na porta 3000.
+- -d detach: processo roda em background.
+- linkapi/challenge: nome da imagem que estou usando para criar o container.
+
 ## Endpoints
 
 ### GET /deals
