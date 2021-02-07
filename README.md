@@ -1,18 +1,20 @@
-# API Rest - Integração entre as plataformas Pipedrive e Bling utilizando Node.js
+# API Rest - Integration between Pipedrive and Bling platforms using Node.js
 
-Desafio técnico proposto pela [LinkApi](https://linkapi.gupy.io/).
+Read this in other language: [Portuguese](docs/pt/README.pt.md).
 
-A integração pode ser realizada de duas formas:
+Technical challenge proposed by [LinkApi](https://linkapi.gupy.io/).
 
-1. Endpoint
+Integration can be accomplished in two ways:
+
+1. Using an endpoint:
     
-    Por meio do endpoint `POST /orders/sync`.
+    Through the endpoint `POST /orders/sync`.
     
-2. Cron
+2. Using cron:
 
-    Utilizando o agendador de tarefas `cron`. O serviço realiza a integração uma vez por dia às 08:00 am.
+    Using the `cron` task scheduler. The service performs the integration once a day at 08:00 am.
 
-## Bibliotecas e ferramentas utilizadas:
+## Libraries and tools used
 
 - [Express](https://expressjs.com/pt-br/)
 - [Mongoose](https://mongoosejs.com/)
@@ -29,74 +31,78 @@ A integração pode ser realizada de duas formas:
 - [Sinon](https://sinonjs.org/)
 - [Tap](https://www.npmjs.com/package/tap)
 
-## Requisitos:
+## Requirements
 
-- [x] Criar contas testes nas plataformas Pipedrive e Bling.
+- [x] Create test accounts on the Pipedrive and Bling platforms.
 
-- [x] Criar uma integração entre as plataformas Pipedrive e Bling. (A integração deve buscar as oportunidades com status igual a ganho no Pipedrive, depois inseri-las como pedido no Bling).
+- [x] Create an integration between Pipedrive and Bling platforms. (The integration must search for deals with status equal to won in Pipedrive, then insert them as order in Bling).
 
-- [x] Criar banco de dados mongo, existem serviços como MongoDB Atlas para criar de graça
+- [x] Create mongo database, there are services like MongoDB Atlas to create for free.
 
-- [x] Criar uma collection no banco de dados MongoDB agregando as oportunidades inseridas no Bling por dia e valor total.
+- [x] Create a collection in the MongoDB database adding the opportunities inserted in Bling by day and total value.
 
-- [x] Criar endpoint para trazer os dados consolidados da collection do MongoDB.
+- [x] Create endpoint to bring the consolidated data from the MongoDB collection.
 
-## Configuraçes
+## Settings
 
-### Contas
+### Accounts
 
-É necessário criar uma conta nas plataformas Pipedrive, Bling e MongoDB Atlas.
+It is necessary to create an account on the Pipedrive, Bling and MongoDB Atlas platforms.
 
 - [Pipedrive](https://www.pipedrive.com/pt)
 - [Bling](https://www.bling.com.br/home)
 - [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
 
-### Dependências
+### Dependencies
 
 - [Node.js v12.20.1](https://nodejs.org/en/blog/release/v12.20.1/)
 - [yarn](https://yarnpkg.com/)
 - [npm](https://www.npmjs.com/)
 
-Clone este repositório e na pasta raiz execute um dos seguintes comandos:
+Clone this repository and in the root folder run one of the following commands:
 
-`yarn install`
+`yarn install` (recommended)
 
 `npm install`
 
-### Variáveis de ambiente
+### Environment variables
 
-Crie um arquivo .env e preencha com suas credenciais. Use o arquivo .env.example como referência.
+Create an .env file and fill in with your credentials. Use the .env.example file as a reference.
 
-### Executar
+### How to run
 
-Pronto, basta executar um dos seguintes comandos para iniciar o serviço:
+Just run one of the following commands to start the service:
 
-`yarn start` ou `yarn dev`
+`yarn start` or `yarn dev` (recommended)
 
-`npm start` ou `npm run dev`
+`npm start` or `npm run dev`
 
 ## Docker
 
-Também é possível usar o serviço utilizando docker, mas é necessário ter o docker instalado.
+It is also possible to use the service using the docker, but it is necessary to have the docker installed.
 
-1. Clone o repositório e configure as variáveis de ambiente.
+### Steps
 
-2. Execute o seguinte comando para criar uma imagem docker:
+1. Clone this repository and set the environment variables.
+
+2. Run the following command to create a docker image:
 
 `sudo docker build -t linkapi/challenge .`
 
-- docker build: cria uma imagem a partir do Dockerfile.
-- -t linkapi/challenge: é o nome/tag da imagem.
-- .: local onde o arquivo Dockerfile está.
+- docker build: creates an image from the Dockerfile
+- -t linkapi/challenge: is the name/tag of the image
+- .: location where the Dockerfile file is
 
-3. Em seguinda, execute o seguinte comando abaixo para criar um container a partir da imagem criada:
+3. Then, execute the following command below to create a container from the created image:
 
 `docker run -p 3000:3000 -d linkapi/challenge`
 
-- docker run: cria um container e o inicializa.
-- -p 3000:3000: libera a porta do container para que cada requisição de fora querendo acessar a porta 3000 do container possa também ouvir na porta 3000.
-- -d detach: processo roda em background.
-- linkapi/challenge: nome da imagem que estou usando para criar o container.
+- docker run: creates a container and initializes it
+- -p 3000:3000: releases the container port so that each request from outside wanting to access the container port 3000 can also listen on port 3000
+- -d detach: process runs in the background
+- linkapi/challenge: name of the image I'm using to create the container
+
+Now the service is running on port 3000.
 
 ## Endpoints
 
@@ -107,26 +113,26 @@ Também é possível usar o serviço utilizando docker, mas é necessário ter o
 
 ## Tests
 
-Para rodar os testes de integração é necessário ter o mongodb instalado localmente ou mudar a URI para um banco de testes a sua escolha. Isso é necessário para criar os mocks.
+To run the integration tests it is necessary to have mongodb installed locally or to it is necessary to change the URI to a database test of your choice. This is necessary to create the mocks.
 
-### Testes de integração
+### Integration tests
 
-Execute o seguinte comando para rodar os testes de integração:
+Run one of the following commands to run the integration tests:
 
-`yarn test:int` ou `npm run test:int`.
+`yarn test:int` or `npm run test:int`.
 
-### Testes unitários
+### Unit tests
 
-Execute o seguinte comando para rodar os teste unitários:
+Run one of the following commands to run the unit tests:
 
-`yarn test:unit` ou `npm run test:unit`.
+`yarn test:unit` or `npm run test:unit`.
 
 ## TODO
 
-- [ ] Corrigir a soma total dos valores por dia (separar entre tipos de moedas diferentes).
-- [ ] Adicionar testes unitários para os métodos da pasta repositores.
-- [ ] Adicionar testes unitários para os métodos da pasta services.
-- [ ] Adicionar testes unitários para os métodos da pasta utils.
-- [ ] Melhorar o tempo de resposta da rota POST /orders/sync.
-- [ ] Executar a sincronização em background e dá uma resposta imediata pro usuário. E usar uma flag para saber se a sincronizção foi bem sucedida ou não.
-- [x] Converter as mensagens retornadas para inglês.
+- [ ] Correct the total sum of values per day (separate between different types of currencies).
+- [ ] Add unit tests for the methods in the repositories folder.
+- [ ] Add unit tests for the methods in the services folder.
+- [ ] Add unit tests for the utils folder methods.
+- [ ] Improve the response time of the POST / orders / sync route.
+- [ ] Perform the synchronization task in background and give an immediate response to the user. (Hint: use a flag to find out if the synchronization was successful or not).
+- [x] Convert the returned messages to English language.

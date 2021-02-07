@@ -1,6 +1,7 @@
 # GET /histories
 
-Endpoint used to retrieve the date and time for each integration. It is basically a new collection in the mongo that contains the timestamp of the integrations made by the cron or the endpoint.
+Endpoint utilizado para recuperar a data e hora de cada integração.
+É basicamente uma nova coleção no mongo que contém o timestamp das integrações realizadas pelo cron ou pelo endpoint.
 
 ## Request
 

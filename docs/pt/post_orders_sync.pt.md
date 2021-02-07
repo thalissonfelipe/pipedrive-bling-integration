@@ -1,7 +1,7 @@
 # POST /orders/sync
 
-Endpoint used to synchronize the Pipedrive and Bling platforms. In case of success, an API can return two types of response.
-Whether or not new orders were created.
+Endpoint utilizado para sincronizar as plataformas Pipedrive e Bling. Em caso de sucesso a API pode retornar dois tipos de resposta.
+Se novos pedidos foram ou não criados.
 
 ## Request
 

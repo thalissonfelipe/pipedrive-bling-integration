@@ -1,6 +1,6 @@
 # GET /deals
 
-Endpoint opcional que retorna uma lista de objetos json com status igual a ganho.
+Optional endpoint that returns a list of json objects with status equal to won.
 
 ## Request
 
@@ -14,19 +14,19 @@ Endpoint opcional que retorna uma lista de objetos json com status igual a ganho
 
 #### Body
 
-Exemplo de resposta com os principais atributos.
+Example of answer with the main attributes.
 
 ```json
 {
     "success": true,
     "data": [
         {
-            "id": "id da oportunidade",
-            "person_name": "nome do cliente",
-            "title": "título da oportunidade",
-            "value": "valor da oportunidade",
-            "currency": "moeda",
-            "wonDate": "data que a oportunidade mudou o status para ganho"
+            "id": "deal id",
+            "person_name": "client name",
+            "title": "deal title",
+            "value": "deal value",
+            "currency": "currency",
+            "wonDate": "date the opportunity changed status to won"
         }
     ]
 }

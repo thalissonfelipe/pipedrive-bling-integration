@@ -1,6 +1,6 @@
 # GET /orders
 
-Endpoint that returns a list of json objects with the data grouped by day of the order and its total value.
+Endpoint que retorna uma lista de objetos json com os dados agrupados por dia da ordem pedido e o seu valor total.
 
 ## Request
 
