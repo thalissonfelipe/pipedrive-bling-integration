@@ -20,8 +20,8 @@ module.exports = {
             const response = await ordersService.create();
 
             const message = response
-                ? 'Sincronização realizada! Novos pedidos foram criados.'
-                : 'Sincronização realizada! Nenhum pedido foi criado.';
+                ? 'Sync complete! New orders have been created.'
+                : 'Sync complete! No orders were created.';
 
             return res.status(200).send(message);
         } catch (error) {

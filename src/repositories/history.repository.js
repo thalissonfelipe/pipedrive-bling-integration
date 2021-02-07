@@ -18,7 +18,7 @@ module.exports = {
                         $dateToString: {
                             format: '%Y-%m-%d %H:%M:%S',
                             date: '$timestamp',
-                            timezone: 'America/Fortaleza'
+                            timezone: 'America/Fortaleza' // temporary
                         }
                     }
                 }

@@ -15,8 +15,8 @@ Se novos pedidos foram ou não criados.
 
 #### Body
 
-- Sincronização realizada! Novos pedidos foram criados.
-- Sincronização realizada! Nenhum pedido foi criado.
+- Sync complete! New orders have been created.
+- Sync complete! No orders were created.
 
 ### Internal Server Error
 

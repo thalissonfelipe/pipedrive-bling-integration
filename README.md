@@ -107,7 +107,7 @@ Também é possível usar o serviço utilizando docker, mas é necessário ter o
 
 ## Tests
 
-Para rodar os testes de integração é necessário ter o mongodb instalado localmente ou mudar a URI para um banco de testes a sua escolha. Isso é necessário para criar os mocks necesários.
+Para rodar os testes de integração é necessário ter o mongodb instalado localmente ou mudar a URI para um banco de testes a sua escolha. Isso é necessário para criar os mocks.
 
 ### Testes de integração
 
@@ -123,9 +123,10 @@ Execute o seguinte comando para rodar os teste unitários:
 
 ## TODO
 
-- [ ] Corrigir a soma total dos valore por dia (separar entre tipos de moedas diferentes).
+- [ ] Corrigir a soma total dos valores por dia (separar entre tipos de moedas diferentes).
 - [ ] Adicionar testes unitários para os métodos da pasta repositores.
 - [ ] Adicionar testes unitários para os métodos da pasta services.
 - [ ] Adicionar testes unitários para os métodos da pasta utils.
 - [ ] Melhorar o tempo de resposta da rota POST /orders/sync.
 - [ ] Executar a sincronização em background e dá uma resposta imediata pro usuário. E usar uma flag para saber se a sincronizção foi bem sucedida ou não.
+- [x] Converter as mensagens retornadas para inglês.

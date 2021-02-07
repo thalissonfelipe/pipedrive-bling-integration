@@ -12,7 +12,7 @@ const MOCK_ERROR = {
     errorLabels: ['TransientTransactionError']
 };
 
-test('Should return HTTP Status 200 and new orders were created', async t => {
+test('Should return HTTP Status 200 and new orders have been created', async t => {
     logger.info = sinon.stub();
     historyRepository.save = sinon.stub();
     historyRepository.save.returns();
@@ -29,7 +29,7 @@ test('Should return HTTP Status 200 and new orders were created', async t => {
     sinon.assert.called(historyRepository.save);
     sinon.assert.called(orderService.create)
     sinon.assert.calledWith(res.status, 200);
-    sinon.assert.calledWith(res.send, 'Sincronização realizada! Novos pedidos foram criados.');
+    sinon.assert.calledWith(res.send, 'Sync complete! New orders have been created.');
 
     sinon.restore();
     t.end();
@@ -52,7 +52,7 @@ test('Should return HTTP Status 200 and no orders were created', async t => {
     sinon.assert.called(historyRepository.save);
     sinon.assert.called(orderService.create)
     sinon.assert.calledWith(res.status, 200);
-    sinon.assert.calledWith(res.send, 'Sincronização realizada! Nenhum pedido foi criado.');
+    sinon.assert.calledWith(res.send, 'Sync complete! No orders were created.');
 
     sinon.restore();
     t.end();
