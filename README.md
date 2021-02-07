@@ -123,9 +123,9 @@ Execute o seguinte comando para rodar os teste unitários:
 
 ## TODO
 
-- [] Corrigir a soma total dos valore por dia (separar entre tipos de moedas diferentes).
-- [] Adicionar testes unitários para os métodos da pasta repositores.
-- [] Adicionar testes unitários para os métodos da pasta services.
-- [] Adicionar testes unitários para os métodos da pasta utils.
-- [] Melhorar o tempo de resposta da rota POST /orders/sync.
-- [] Rodar a sincronização em background e dá uma resposta imediata pro usuário. E usar uma flag para saber se a sincronizão foi bem sucedida ou não.
+- [ ] Corrigir a soma total dos valore por dia (separar entre tipos de moedas diferentes).
+- [ ] Adicionar testes unitários para os métodos da pasta repositores.
+- [ ] Adicionar testes unitários para os métodos da pasta services.
+- [ ] Adicionar testes unitários para os métodos da pasta utils.
+- [ ] Melhorar o tempo de resposta da rota POST /orders/sync.
+- [ ] Executar a sincronização em background e dá uma resposta imediata pro usuário. E usar uma flag para saber se a sincronizção foi bem sucedida ou não.
