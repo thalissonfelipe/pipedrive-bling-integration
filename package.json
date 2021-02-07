@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
+    "test:unit": "tap --cov tests/unit",
     "test:int": "mocha tests/int --exit"
   },
   "license": "MIT",
@@ -22,6 +23,8 @@
     "chai": "^4.3.0",
     "chai-http": "^4.3.0",
     "mocha": "^8.2.1",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "sinon": "^9.2.4",
+    "tap": "^14.11.0"
   }
 }

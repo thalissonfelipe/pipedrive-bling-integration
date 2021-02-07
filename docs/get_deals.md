@@ -17,16 +17,19 @@ Endpoint opcional que retorna uma lista de objetos json com status igual a ganho
 Exemplo de resposta com os principais atributos.
 
 ```json
-[
-    {
-        "id": "id da oportunidade",
-        "person_name": "nome do cliente",
-        "title": "título da oportunidade",
-        "value": "valor da oportunidade",
-        "currency": "moeda",
-        "wonDate": "data que a oportunidade mudou o status para ganho"
-    }
-]
+{
+    "success": true,
+    "data": [
+        {
+            "id": "id da oportunidade",
+            "person_name": "nome do cliente",
+            "title": "título da oportunidade",
+            "value": "valor da oportunidade",
+            "currency": "moeda",
+            "wonDate": "data que a oportunidade mudou o status para ganho"
+        }
+    ]
+}
 ```
 
 ### Internal Server Error

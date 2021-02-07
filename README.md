@@ -24,6 +24,10 @@ A integração pode ser realizada de duas formas:
 - [Nodemon](https://nodemon.io/)
 - [dotenv](https://www.npmjs.com/package/dotenv)
 - [Docker](https://www.docker.com/)
+- [Mocha](https://mochajs.org/)
+- [Chai](https://www.chaijs.com/)
+- [Sinon](https://sinonjs.org/)
+- [Tap](https://www.npmjs.com/package/tap)
 
 ## Requisitos:
 
@@ -100,3 +104,28 @@ Também é possível usar o serviço utilizando docker, mas é necessário ter o
 - [GET /orders](docs/get_orders.md)
 - [GET /histories](docs/get_histories.md)
 - [POST /orders/sync](docs/post_orders_sync.md)
+
+## Tests
+
+Para rodar os testes de integração é necessário ter o mongodb instalado localmente ou mudar a URI para um banco de testes a sua escolha. Isso é necessário para criar os mocks necesários.
+
+### Testes de integração
+
+Execute o seguinte comando para rodar os testes de integração:
+
+`yarn test:int` ou `npm run test:int`.
+
+### Testes unitários
+
+Execute o seguinte comando para rodar os teste unitários:
+
+`yarn test:unit` ou `npm run test:unit`.
+
+## TODO
+
+- [] Corrigir a soma total dos valore por dia (separar entre tipos de moedas diferentes).
+- [] Adicionar testes unitários para os métodos da pasta repositores.
+- [] Adicionar testes unitários para os métodos da pasta services.
+- [] Adicionar testes unitários para os métodos da pasta utils.
+- [] Melhorar o tempo de resposta da rota POST /orders/sync.
+- [] Rodar a sincronização em background e dá uma resposta imediata pro usuário. E usar uma flag para saber se a sincronizão foi bem sucedida ou não.
