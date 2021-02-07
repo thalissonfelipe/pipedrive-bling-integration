@@ -8,7 +8,9 @@ const connection = require('./database/db');
 const logger = require('./utils/log');
 
 app.use(express.json());
-app.use(morgan('combined', { stream: logger.stream }));
+if (process.env.NODE_ENV != 'test') {
+    app.use(morgan('combined', { stream: logger.stream }));
+}
 app.use('/', router);
 
 connection
