@@ -111,6 +111,12 @@ Now the service is running on port 3000.
 - [GET /histories](docs/get_histories.md)
 - [POST /orders/sync](docs/post_orders_sync.md)
 
+## Heroku
+
+You can access the API endpoints using the following link deployed by Heroku:
+
+[https://linkapi-challenge.herokuapp.com/](https://linkapi-challenge.herokuapp.com/)
+
 ## Tests
 
 To run the integration tests it is necessary to have mongodb installed locally or to it is necessary to change the URI to a database test of your choice. This is necessary to create the mocks.
